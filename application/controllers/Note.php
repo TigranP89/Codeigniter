@@ -10,18 +10,21 @@ class Note extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('session');
+		$this->load->library('table');
 		
 	}
 
 	public function index(){
 		
 		
+		$query = $this->db->query("SELECT * FROM note WHERE user_id = " . $this->session->userdata('userId'));
+        //$query->result()
+		$data =  array();  // create a new array
+		$data['contents']= $query->result(); // add $cleanarray to the new array
 		
-			
-		//echo $this->session->userdata('userId');exit;
 		
 		$this->load->view('templetes/header');		
-		$this->load->view('note/index');
+		$this->load->view('note/index', $data);	
 		$this->load->view('templetes/footer');
 
 		
@@ -35,36 +38,36 @@ class Note extends CI_Controller
 		//echo "ok 4";
 		$this->form_validation->set_rules('text', 'Enter some text', 'required');
 
+		
 		if ($this->form_validation->run() == TRUE) {
 
-			$string = "SELECT user_id FROM note";
-			$query = $this->db->query($string);
-			$row = $query->row_array();
+			
+			
 
-            if (isset($row)){
-    			
-				echo $row['user_id'] ." ";
-  			    
-			}
+
+			$name = $this->session->userdata('userId');
+        
 			
 			$data= array(
-				'text'=>$_POST['text'],				
-				'date'=> date('l jS \of F Y h:i:s A')
+				'text' => $_POST['text'],				
+				'date' => date('l jS \of F Y h:i:s A'),
+				'user_id' => $name
 			);
-			$this->db->insert('note',$data);
-			
-		
-		
-
-		
+			$this->db->insert('note',$data);			
 
 		}
 		
 		
 
-		
 		redirect('/note/index');
+	}
 
+
+	public function getNote(){
+		/*$string = "SELECT * FROM note";
+		$query = $this->db->query($string);
+		echo $this->table->generate($query);exit;*/
+		
 
 	}
 

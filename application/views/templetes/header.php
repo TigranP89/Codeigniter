@@ -89,8 +89,30 @@
 	input[type=button].logbtn{
 		background-color: #ffa500;
 	}
-		
-	
+	/*table style*/
+	table {
+ 		font-family: Arial, Helvetica, sans-serif;
+  		border-collapse: collapse;
+ 		width: 100%;
+	}
+
+	td, th {
+		border: 1px solid #ddd;
+  		padding: 8px;
+	}
+	tr:nth-child(even) {
+  		background-color: #dddddd;
+	}
+	tr:hover {
+		background-color: #ddd;
+	}
+	th {
+  		padding-top: 12px;
+  		padding-bottom: 12px;
+  		text-align: left;
+  		background-color: #4CAF50;
+  		color: white;
+    }	
 	</style>
 </head>
 <body>
