@@ -1,3 +1,17 @@
+<div class="rightSide">
+    <div class="userName">
+        <a href="../../index.php/personal/index">
+            <?php if($user_full_name!="") echo $user_full_name; ?>
+        </a>
+    </div>
+        
+    <div class="logout">
+        <form action="logoutSession" method="POST">
+            <button>LOGOUT</button>
+        </form>
+    </div>       
+ </div>
+
 <div class="contactDiv">    
     <div class="showNote">
 	<form action="showAllNotes" method="POST">
