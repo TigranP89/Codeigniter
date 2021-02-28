@@ -11,8 +11,7 @@
             padding: 20px 10px;		
             }
 	/*Personal style*/	
-	.personalDiv,.contactDiv{
-            width:300px;	/*two buttons on line*/		
+	.personalDiv,.contactDiv{           
             text-align: center;		/*two buttons on line*/	
 	}
 
@@ -22,13 +21,14 @@
             padding: 20px 10px;		
             width:130px;		
 	}
-	.logout{
+	.logout,.rightSide.userName{
             border-radius: 5px;		
             padding: 20px 10px;		
             margin-bottom: 5px;
             float: right; 
             width: 130px;
 	}
+        
 	.showNote button{
             font-family: "Roboto", sans-serif;
             text-transform: uppercase;
@@ -53,6 +53,7 @@
             font-size: 14px;		
             cursor: pointer;
             margin: 1px;
+            float: right;
 	}
 
 	/*Regestration style*/
@@ -92,7 +93,7 @@
              display: none;
         }
 	.homePage{
-            width: 280px;	/*two buttons on line*/		
+            	
             text-align: center;		/*two buttons on line*/	
 	 }
 	 .homePage .logout{
@@ -203,13 +204,13 @@
             color: white;		 
     }	
 	 /*User Name*/
-	.notePage{
-            width:300px;	/*two buttons on line*/		
-            text-align: center;		/*two buttons on line*/	
-	 }
+	/*.notePage{
+            width:300px;	//two buttons on line	
+            text-align: center;		//two buttons on line
+	 }*/
 	a{
             position:relative; 
-            float: left; 
+            float: right; 
             width: 130px;
 	}	
 	/*Note */

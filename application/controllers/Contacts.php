@@ -19,7 +19,15 @@ class Contacts extends CI_Controller
         $data =  array();
         $data['contact_table']=$this->contact_model->get_user_contact($userId);
         $data['instant_req']= $this->user_model->input_user_notes($userId);// add $instant_req to the new array
-
+        
+        if ($userId!=""){
+            $user_info=$this->user_model->personal_info($userId);
+            $data['user_full_name']=$user_info->fname ." ". $user_info->lname;
+            
+        }
+        else {
+            $data['user_full_name'] ="";
+        }  
 
 	$this->load->view('templetes/header');		
 	$this->load->view('contacts/index',  $data);
@@ -27,8 +35,21 @@ class Contacts extends CI_Controller
     }
 
     public function input_button(){
+        $userId = $this->session->userdata('userId');
+        
+        $data =  array();  // create a new array
+        
+         if ($userId!=""){
+            $user_info=$this->user_model->personal_info($userId);
+            $data['user_full_name']=$user_info->fname ." ". $user_info->lname;
+            
+        }
+        else {
+            $data['user_full_name'] ="";
+        }
+        
         $this->load->view('templetes/header');
-        $this->load->view('contacts/inputForm');
+        $this->load->view('contacts/inputForm', $data);
         $this->load->view('templetes/footer');
     }
     
@@ -45,10 +66,21 @@ class Contacts extends CI_Controller
     }
     
     public function editContact(){
+        $userId = $this->session->userdata('userId');
+        
 	$id = $_POST['editContId'];		
 	$data =  array();  // create a new array
 	$data['contact_info']= $this->contact_model->get_contact($id); // add $contact_info to the new array		
-		
+        
+        if ($userId!=""){
+            $user_info=$this->user_model->personal_info($userId);
+            $data['user_full_name']=$user_info->fname ." ". $user_info->lname;
+            
+        }
+        else {
+            $data['user_full_name'] ="";
+        }
+        
 	$this->load->view('templetes/header');		
 	$this->load->view('contacts/edit', $data);	//sent $data($contact_info,...,...) array to viwe
 	$this->load->view('templetes/footer');
@@ -64,5 +96,10 @@ class Contacts extends CI_Controller
 
     public function showUserNote(){
 	redirect('/note/index');
+    }
+    
+    public function logoutSession(){
+	$this->session->set_userdata('userId', "");
+    	redirect('home/index');
     }
 }
